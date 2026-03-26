@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Developer Resume</title>
+    <style>
+        /* Developer / Technical: Project-centric, tech-forward, code-inspired */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #e0e0e0;
+            background: #0d1117;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 24px 28px;
+        }
+
+        /* ── Header ── */
+        .header {
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #21262d;
+        }
+        .header h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22pt;
+            font-weight: 700;
+            color: #58a6ff;
+            margin-bottom: 2px;
+        }
+        .header h1::before {
+            content: "$ ";
+            color: #3fb950;
+            font-weight: 400;
+        }
+        .header .subtitle {
+            font-size: 9.5pt;
+            color: #8b949e;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 300;
+        }
+
+        .contact-bar {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            color: #8b949e;
+            background: #161b22;
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid #21262d;
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11pt;
+            font-weight: 700;
+            color: #3fb950;
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+        }
+        .section-title::before {
+            content: "## ";
+            color: #484f58;
+        }
+
+        /* ── Summary ── */
+        .summary-text {
+            font-size: 10pt;
+            color: #c9d1d9;
+            line-height: 1.6;
+            padding: 12px 16px;
+            background: #161b22;
+            border-radius: 6px;
+            border-left: 3px solid #58a6ff;
+        }
+
+        /* ── Tech Stack ── */
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tech-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5pt;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .tech-badge.lang { background: #1f3a5f; color: #58a6ff; border: 1px solid #264a78; }
+        .tech-badge.framework { background: #1a3a2a; color: #3fb950; border: 1px solid #245a3a; }
+        .tech-badge.tool { background: #3a2a1a; color: #d29922; border: 1px solid #5a3a1a; }
+        .tech-badge.default { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+
+        /* ── Experience ── */
+        .entry {
+            margin-bottom: 14px;
+            padding: 12px 16px;
+            background: #161b22;
+            border-radius: 6px;
+            border: 1px solid #21262d;
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        .entry-title {
+            font-weight: 600;
+            font-size: 10.5pt;
+            color: #e0e0e0;
+        }
+        .entry-company {
+            color: #58a6ff;
+            font-weight: 400;
+        }
+        .entry-duration {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8pt;
+            color: #8b949e;
+            background: #0d1117;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        /* ── Projects (Prominent) ── */
+        .project-card {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            background: #161b22;
+            border-radius: 8px;
+            border: 1px solid #21262d;
+            border-left: 3px solid #3fb950;
+        }
+        .project-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 11pt;
+            color: #58a6ff;
+            margin-bottom: 4px;
+        }
+        .project-tech-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+        .project-tech-item {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8pt;
+            padding: 2px 8px;
+            background: #0d1117;
+            color: #3fb950;
+            border-radius: 3px;
+            border: 1px solid #1a3a2a;
+        }
+        .project-desc {
+            font-size: 9.5pt;
+            color: #8b949e;
+            margin-bottom: 4px;
+        }
+
+        /* ── Lists ── */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        li {
+            font-size: 9.5pt;
+            margin-bottom: 3px;
+            padding-left: 16px;
+            position: relative;
+            color: #c9d1d9;
+        }
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3fb950;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9pt;
+        }
+
+        /* ── Education ── */
+        .edu-entry {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            background: #161b22;
+            border-radius: 4px;
+        }
+        .edu-degree {
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+        .edu-institution {
+            color: #8b949e;
+            font-size: 9.5pt;
+        }
+        .edu-details {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8pt;
+            color: #484f58;
+        }
+
+        /* ── Certifications ── */
+        .cert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .cert-badge {
+            font-size: 8.5pt;
+            padding: 4px 10px;
+            background: #1f1a3a;
+            color: #bc8cff;
+            border-radius: 4px;
+            border: 1px solid #2a1f5a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>{{ name }}</h1>
+            <div class="subtitle">Software Developer</div>
+            <div class="contact-bar">
+                {% if email %}<span class="contact-item">{{ email }}</span>{% endif %}
+                {% if phone %}<span class="contact-item">{{ phone }}</span>{% endif %}
+                {% if linkedin %}<span class="contact-item">{{ linkedin }}</span>{% endif %}
+            </div>
+        </div>
+
+        <!-- Summary -->
+        {% if summary %}
+        <div class="section">
+            <h2 class="section-title">About</h2>
+            <p class="summary-text">{{ summary }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Tech Stack (Skills) -->
+        {% if skills %}
+        <div class="section">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="tech-grid">
+                {% for skill in skills %}
+                <span class="tech-badge {% if loop.index0 % 4 == 0 %}lang{% elif loop.index0 % 4 == 1 %}framework{% elif loop.index0 % 4 == 2 %}tool{% else %}default{% endif %}">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Projects (Prominent) -->
+        {% if projects %}
+        <div class="section">
+            <h2 class="section-title">Projects</h2>
+            {% for proj in projects %}
+            <div class="project-card">
+                <div class="project-name">{{ proj.name }}</div>
+                {% if proj.technologies %}
+                <div class="project-tech-row">
+                    {% for tech in proj.technologies %}
+                    <span class="project-tech-item">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if proj.description %}
+                <p class="project-desc">{{ proj.description }}</p>
+                {% endif %}
+                {% if proj.bullets %}
+                <ul>
+                    {% for bullet in proj.bullets %}
+                    <li>{{ bullet }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Experience -->
+        {% if experience %}
+        <div class="section">
+            <h2 class="section-title">Experience</h2>
+            {% for exp in experience %}
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-title">{{ exp.title }}</span>
+                        {% if exp.company %}<span class="entry-company"> @ {{ exp.company }}</span>{% endif %}
+                    </div>
+                    {% if exp.duration %}<span class="entry-duration">{{ exp.duration }}</span>{% endif %}
+                </div>
+                {% if exp.bullets %}
+                <ul>
+                    {% for bullet in exp.bullets %}
+                    <li>{{ bullet }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Education -->
+        {% if education %}
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            {% for edu in education %}
+            <div class="edu-entry">
+                <span class="edu-degree">{{ edu.degree }}</span>
+                {% if edu.institution %}<span class="edu-institution"> · {{ edu.institution }}</span>{% endif %}
+                <div class="edu-details">
+                    {% if edu.year %}{{ edu.year }}{% endif %}
+                    {% if edu.gpa %} | GPA: {{ edu.gpa }}{% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Certifications -->
+        {% if certifications %}
+        <div class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="cert-list">
+                {% for cert in certifications %}
+                <span class="cert-badge">{{ cert }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
