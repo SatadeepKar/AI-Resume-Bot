@@ -41,6 +41,10 @@ class Settings(BaseSettings):
 # Singleton settings instance
 settings = Settings()
 
+# Post-processing: Ensure API_BASE_URL has a scheme (crucial for Render's dynamic hostport)
+if settings.API_BASE_URL and not settings.API_BASE_URL.startswith(("http://", "https://")):
+    settings.API_BASE_URL = f"http://{settings.API_BASE_URL}"
+
 # Ensure directories exist
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 os.makedirs(settings.OUTPUT_DIR, exist_ok=True)
