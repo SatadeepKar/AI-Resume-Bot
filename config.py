@@ -41,6 +41,13 @@ class Settings(BaseSettings):
 # Singleton settings instance
 settings = Settings()
 
+# Dynamic Port Override: Ensure both processes share the same dynamic port on Render Free tier
+import os
+env_port = os.environ.get("PORT")
+if env_port:
+    settings.API_PORT = int(env_port)
+    settings.API_BASE_URL = f"http://127.0.0.1:{env_port}"
+
 # Post-processing: Ensure API_BASE_URL has a scheme (crucial for Render's dynamic hostport)
 if settings.API_BASE_URL and not settings.API_BASE_URL.startswith(("http://", "https://")):
     settings.API_BASE_URL = f"http://{settings.API_BASE_URL}"

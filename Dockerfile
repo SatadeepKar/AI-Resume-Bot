@@ -17,5 +17,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose port 8000 (standard for local, overridden by Render's $PORT)
 EXPOSE 8000
 
-# Default command is to run the FastAPI web server
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Default command is to run the multi-process supervisor entrypoint
+CMD ["python", "entrypoint.py"]

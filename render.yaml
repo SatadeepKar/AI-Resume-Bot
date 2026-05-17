@@ -2,44 +2,16 @@
 # Reference: https://render.com/docs/blueprints
 
 services:
-  # ── 1. FastAPI API Web Service ─────────────────────────────────────────────
+  # ── 1. Unified Web Service (FastAPI Server + Telegram Bot) ────────────────
   - type: web
-    name: ai-resume-bot-api
+    name: ai-resume-bot
     env: docker
     dockerfilePath: Dockerfile
     plan: free # Deploys on Render's Free Tier
     buildCommand: "" # No build step required for Docker
-    dockerCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       # API Keys (set as secure secrets in Render dashboard)
       - key: GROQ_API_KEY
         sync: false # Prompts user to input value on deploy
       - key: TELEGRAM_BOT_TOKEN
         sync: false # Prompts user to input value on deploy
-      # Use dynamic hostport from the web service itself (mapped internally)
-      - key: API_BASE_URL
-        fromService:
-          type: web
-          name: ai-resume-bot-api
-          property: hostport
-
-  # ── 2. Telegram Bot Background Worker ───────────────────────────────────────
-  - type: worker
-    name: ai-resume-bot-worker
-    env: docker
-    dockerfilePath: Dockerfile
-    plan: free # Deploys on Render's Free Tier
-    buildCommand: ""
-    dockerCommand: python bot.py
-    envVars:
-      # API Keys (shared from the same environment configuration)
-      - key: GROQ_API_KEY
-        sync: false
-      - key: TELEGRAM_BOT_TOKEN
-        sync: false
-      # Map to the web service private network URL for lightning-fast internal file transfers
-      - key: API_BASE_URL
-        fromService:
-          type: web
-          name: ai-resume-bot-api
-          property: hostport
