@@ -9,7 +9,7 @@ services:
     dockerfilePath: Dockerfile
     plan: free # Deploys on Render's Free Tier
     buildCommand: "" # No build step required for Docker
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    dockerCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       # API Keys (set as secure secrets in Render dashboard)
       - key: GROQ_API_KEY
@@ -30,7 +30,7 @@ services:
     dockerfilePath: Dockerfile
     plan: free # Deploys on Render's Free Tier
     buildCommand: ""
-    startCommand: python bot.py
+    dockerCommand: python bot.py
     envVars:
       # API Keys (shared from the same environment configuration)
       - key: GROQ_API_KEY
