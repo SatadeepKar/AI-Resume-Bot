@@ -1,9 +1,27 @@
 FROM python:3.10-slim
 
-# Install system dependencies for wkhtmltopdf and headless rendering
+# Install system dependencies for wkhtmltopdf and downloading assets
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wkhtmltopdf \
+    wget \
+    ca-certificates \
+    fontconfig \
+    libfreetype6 \
+    libjpeg62-turbo \
+    libpng16-16 \
+    libx11-6 \
+    libxcb1 \
+    libxext6 \
+    libxrender1 \
+    xfonts-75dpi \
+    xfonts-base \
     xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download and install the patched wkhtmltopdf package specifically built for Debian Bookworm
+RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bookworm_amd64.deb \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends ./wkhtmltox_0.12.6.1-3.bookworm_amd64.deb \
+    && rm wkhtmltox_0.12.6.1-3.bookworm_amd64.deb \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
